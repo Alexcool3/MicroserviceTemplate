@@ -38,13 +38,27 @@
     "useMapper": {
       "type": "computed",
       "value": "use-mapper"
+    },
+    "include-gitignore": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Includes custom gitignore file"
     }
   },
   "sources": [
     {
       "modifiers": [
         {
-          "exclude": [".template.config/**"]
+          "exclude": [
+            ".template.config/**",
+            ".git/**",
+            ".github/**",
+            ".vs/**",
+            "bin/**",
+            "obj/**",
+            "**.csproj"
+          ]
         },
         {
           "exclude": ["**AuthService/Data/**"],
@@ -57,6 +71,10 @@
         {
           "exclude": ["**.slnx"],
           "condition": "!(createSolution)"
+        },
+        {
+          "exclude": ["**.gitignore"],
+          "condition": "!(include-ignore)"
         }
       ]
     }
