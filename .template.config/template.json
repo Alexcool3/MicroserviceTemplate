@@ -57,7 +57,7 @@
             ".vs/**",
             "bin/**",
             "obj/**",
-            "**.csproj"
+            "**.CSharp.csproj"
           ]
         },
         {
@@ -74,9 +74,31 @@
         },
         {
           "exclude": ["**.gitignore"],
-          "condition": "!(include-ignore)"
+          "condition": "!(include-gitignore)"
         }
       ]
+    }
+  ],
+  "postActions": [
+    {
+      "description": "Initialize user-secrets and set Sentry DSN.",
+      "manualInstructions": [],
+      "evaluator": "msbuild",
+      "actionId": "3A69316CD-9A16-4180-8774-4C5C050D6DF1",
+      "args": {
+        "executable": "dotnet",
+        "args": "user-secrets init"
+      }
+    },
+    {
+      "description": "Add Sentry DSN to user-secrets.",
+      "manualInstructions": [],
+      "evaluator": "msbuild",
+      "actionId": "3A69316CD-9A16-4180-8774-4C5C050D6DF1",
+      "args": {
+        "executable": "dotnet",
+        "args": "user-secrets set \"Sentry:Dsn\" \"\""
+      }
     }
   ]
 }
