@@ -1,0 +1,64 @@
+{
+  "$schema$": "http://json.schema.schemastore.org/template",
+  "author": "Alexander",
+  "classifications": ["Web", "Microservice", "API"],
+  "identity": "Playground.MicroserviceTemplate.CSharp",
+  "name": "Microservice C# Template",
+  "shortName": "pg-service",
+  "description": "A professional template for Microservice using ASP.NET Core, SharedKernel, Scalar and PostgreSQL.",
+  "sourceName": "AuthService",
+  "preferNameDirectory": true,
+  "symbols": {
+    "create-solution": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "true",
+      "description": "Automatically creates a Solution (.slnx) file and adds project to it."
+    },
+    "createSolution": {
+      "type": "computed",
+      "value": "create-solution"
+    },
+    "use-ef": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Includes Entity Framework Core and PostgresSQL setup"
+    },
+    "useEf": {
+      "type": "computed",
+      "value": "use-ef"
+    },
+    "use-mapper": {
+      "type": "parameter",
+      "datatype": "bool",
+      "defaultValue": "false",
+      "description": "Includes mapper setup using Mapperly."
+    },
+    "useMapper": {
+      "type": "computed",
+      "value": "use-mapper"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [".template.config/**"]
+        },
+        {
+          "exclude": ["**AuthService/Data/**"],
+          "condition": "!(useEf)"
+        },
+        {
+          "exclude": ["**AuthService/Mappers/**"],
+          "condition": "!(useMapper)"
+        },
+        {
+          "exclude": ["**.slnx"],
+          "condition": "!(createSolution)"
+        }
+      ]
+    }
+  ]
+}
